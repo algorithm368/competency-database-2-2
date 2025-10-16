@@ -6,7 +6,6 @@ import {
   RefreshCw,
   Database,
   Server,
-  ArrowRight,
   CheckCircle,
   LucideIcon,
 } from "lucide-react";
@@ -101,12 +100,6 @@ export function WhatsNewsSection({ features }: WhatsNewsSectionProps) {
                   <CardContent>
                     <p className="leading-relaxed">{feature.description}</p>
                   </CardContent>
-
-                  {i < features.length - 1 && (
-                    <div className="absolute -right-4 top-1/2 -translate-y-1/2 hidden md:block transition-all duration-700">
-                      <ArrowRight className="w-6 h-6 text-primary animate-pulse" />
-                    </div>
-                  )}
                 </Card>
               </div>
             );

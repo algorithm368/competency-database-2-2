@@ -38,7 +38,8 @@ export function SearchForm() {
         <Button
           type="submit"
           size="sm"
-          className="absolute right-1 top-1/2 -translate-y-1/2 transition-all duration-200 hover:scale-105"
+          className="absolute right-1 top-1/2 -translate-y-1/2 transition-all duration-200 hover:scale-105 mr-2"
+          variant={"outline"}
         >
           Search
         </Button>
