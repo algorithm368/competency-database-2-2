@@ -1,6 +1,6 @@
 import { HeroSection } from "./components/HeroSection";
-import { WhatsNewsSection } from "./components/WhatsNewsSection";
-import { frameworkFeatures, newsFeatures } from "./data/frameworks";
+import { WhatsNewsSection } from "./components/NewsSection";
+import { frameworkFeatures, newsFeatures } from "./data/frameworksData";
 
 export default function HomePage() {
   return (

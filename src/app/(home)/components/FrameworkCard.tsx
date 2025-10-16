@@ -19,7 +19,6 @@ interface Framework {
 
 interface FrameworkCardProps {
   readonly framework: Framework;
-  readonly index: number;
 }
 
 export function FrameworkCard({ framework }: FrameworkCardProps) {
@@ -30,7 +29,7 @@ export function FrameworkCard({ framework }: FrameworkCardProps) {
       <Card className="group hover:shadow-lg bg-[transparent] backdrop-blur-sm hover:-translate-y-1 p-4">
         <CardHeader className="space-y-4">
           <div className="flex items-center gap-4">
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl border-3 border-foreground">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl border-2 border-foreground">
               <Icon className="w-6 h-6 text-foreground" />
             </div>
             <Badge>{framework.framework}</Badge>
