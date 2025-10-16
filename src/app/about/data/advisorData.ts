@@ -1,6 +1,5 @@
 import React, { type ReactNode } from "react";
 import type { StaticImageData } from "next/image";
-import AdvisorIMG from "../../../assets/AboutPage/Advisor.jpeg";
 import { Globe, Share2 } from "lucide-react";
 
 /* Local types (kept in this file for simplicity) */
@@ -33,26 +32,28 @@ export interface AdvisorInfo {
 }
 
 export const advisorInfo: AdvisorInfo = {
-  name: "ดร.สุรเดช จิตประไพกุลศาล",
+  // Advisor name translated to English
+  name: "Dr. Suradet Jitprapaikulsarn",
   englishName: "DR. Suradet Jitprapaikulsarn",
+  // use public image path (or change to imported StaticImageData if you prefer)
   image: "/images/Advisor.jpeg",
   affiliations: [
     {
-      name: "ภาควิชาวิศวกรรมไฟฟ้าและคอมพิวเตอร์ (ECPE)",
+      name: "Department of Electrical and Computer Engineering (ECPE)",
       url: "https://ecpe.nu.ac.th",
     },
     {
-      name: "คณะวิศวกรรมศาสตร์",
+      name: "Faculty of Engineering",
       url: "http://www.eng.nu.ac.th/eng2022/index.php",
     },
     {
-      name: "มหาวิทยาลัยนเรศวร",
+      name: "Naresuan University",
       url: "https://www.nu.ac.th/",
     },
   ],
   contact: {
     address:
-      "99 หมู่ 9 ตำบลท่าโพธิ์ อำเภอเมือง พิษณุโลก พิษณุโลก 65000 ประเทศไทย",
+      "99 Moo 9, Tha Pho Subdistrict, Mueang Phitsanulok District, Phitsanulok 65000, Thailand",
     email: "suradet.j@gmail.com / suradet@nu.ac.th",
     officePhone: "055-96-4391",
     mobilePhone: "089-451-8144",

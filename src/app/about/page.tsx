@@ -47,7 +47,7 @@ export default function AboutPage() {
         <HeaderAbout
           title="Our Team"
           titleAs="h2"
-          description="Behind this system is a multidisciplinary team of developers, educators, and industry experts dedicated to creating tools that promote lifelong learning and career advancement."
+          description="Behind this system is a multidisciplinary team of developers experts dedicated to creating tools that promote lifelong learning and career advancement."
         />
         {/* Team Section */}
         <CardTeam />

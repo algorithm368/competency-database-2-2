@@ -3,7 +3,7 @@ import { Card, CardHeader } from "@/components/ui/card";
 import { teams } from "../data/memberData";
 import type { MemberProps } from "../data/memberData";
 
-function CardMember({ member }: { member: MemberProps }) {
+function CardMember({ member }: Readonly<{ member: MemberProps }>) {
   return (
     <Card className="border border-border/40 shadow-sm hover:shadow-md transition-shadow duration-200">
       <CardHeader className="pb-0">
