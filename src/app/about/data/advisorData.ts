@@ -44,7 +44,7 @@ export const advisorInfo: AdvisorInfo = {
     },
     {
       name: "Faculty of Engineering",
-      url: "http://www.eng.nu.ac.th/eng2022/index.php",
+      url: "https://ecpe.nu.ac.th/",
     },
     {
       name: "Naresuan University",
@@ -57,7 +57,7 @@ export const advisorInfo: AdvisorInfo = {
     email: "suradet.j@gmail.com / suradet@nu.ac.th",
     officePhone: "055-96-4391",
     mobilePhone: "089-451-8144",
-    appointmentUrl: "http://tinyurl.com/SJ-appointment",
+    appointmentUrl: "https://calendly.com/suradet",
   },
   socialLinks: [
     {
