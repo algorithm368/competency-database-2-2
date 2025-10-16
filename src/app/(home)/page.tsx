@@ -4,9 +4,11 @@ import { frameworkFeatures, newsFeatures } from "./data/frameworks";
 
 export default function HomePage() {
   return (
-    <main className="relative min-h-screen bg-gradient-to-b from-[var(--background)] via-[var(--card)] to-[var(--background)]">
-      <HeroSection frameworks={frameworkFeatures} />
-      <WhatsNewsSection features={newsFeatures} />
+    <main className="w-full">
+      <div className="max-w-6xl mx-auto px-6">
+        <HeroSection frameworks={frameworkFeatures} />
+        <WhatsNewsSection features={newsFeatures} />
+      </div>
     </main>
   );
 }
