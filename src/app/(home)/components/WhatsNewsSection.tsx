@@ -20,13 +20,13 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 interface NewsFeature {
-  icon: string;
-  title: string;
-  description: string;
+  readonly icon: string;
+  readonly title: string;
+  readonly description: string;
 }
 
 interface WhatsNewsSectionProps {
-  features: NewsFeature[];
+  readonly features: NewsFeature[];
 }
 
 export function WhatsNewsSection({ features }: WhatsNewsSectionProps) {

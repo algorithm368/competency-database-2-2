@@ -2,16 +2,16 @@ import { SearchForm } from "./SearchForm";
 import { FrameworkCard } from "./FrameworkCard";
 
 interface Framework {
-  framework: string;
-  title: string;
-  description: string;
-  icon: string;
-  features: string[];
-  variant: "blue" | "emerald";
+  readonly framework: string;
+  readonly title: string;
+  readonly description: string;
+  readonly icon: string;
+  readonly features: string[];
+  readonly variant: "blue" | "emerald";
 }
 
 interface HeroSectionProps {
-  frameworks: Framework[];
+  readonly frameworks: Framework[];
 }
 
 export function HeroSection({ frameworks }: HeroSectionProps) {

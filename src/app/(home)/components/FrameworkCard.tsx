@@ -9,17 +9,17 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 interface Framework {
-  framework: string;
-  title: string;
-  description: string;
-  icon: string;
-  features: string[];
-  variant: "blue" | "emerald";
+  readonly framework: string;
+  readonly title: string;
+  readonly description: string;
+  readonly icon: string;
+  readonly features: readonly string[];
+  readonly variant: "blue" | "emerald";
 }
 
 interface FrameworkCardProps {
-  framework: Framework;
-  index: number;
+  readonly framework: Framework;
+  readonly index: number;
 }
 
 export function FrameworkCard({ framework, index }: FrameworkCardProps) {
