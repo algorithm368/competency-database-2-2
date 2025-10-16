@@ -30,7 +30,7 @@ export function HeroSection({ frameworks }: HeroSectionProps) {
 
         <div className="mt-8 grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {frameworks.map((fw) => (
-            <FrameworkCard key={fw.framework} framework={fw} index={0} />
+            <FrameworkCard key={fw.framework} framework={fw} />
           ))}
         </div>
       </div>

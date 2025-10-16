@@ -43,7 +43,7 @@ export function WhatsNewsSection({ features }: WhatsNewsSectionProps) {
           </Badge>
 
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-left">
-            What's New in Version 2
+            What&apos;s New in Version 2
           </h2>
 
           <p className="text-lg max-w-2xl mb-16 text-left">
