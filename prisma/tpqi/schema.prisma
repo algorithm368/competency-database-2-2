@@ -51,12 +51,12 @@ model SectorToOccupation {
 }
 
 model BranchToOccupation {
-  branch       Branch      @relation(fields: [branchId], references: [id])
-  branchId     Int
   occupation   Occupation  @relation(fields: [occupationId], references: [id])
   occupationId Int
+  branch       Branch      @relation(fields: [branchId], references: [id])
+branchId     Int
 
-  @@id([branchId, occupationId])
+  @@id([occupationId,branchId])
   @@index([branchId])
   @@index([occupationId])
 }
