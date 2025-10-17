@@ -1,0 +1,138 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL_TPQI")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Sector {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  branches    SectorToBranch[]
+  occupations SectorToOccupation[]
+}
+
+model Branch {
+  id           Int                   @id @default(autoincrement())
+  name         String                @unique
+  sectors      SectorToBranch[]
+  branchToOccupations BranchToOccupation[]
+}
+
+
+model SectorToBranch {
+  branch   Branch @relation(fields: [branchId], references: [id])
+  branchId Int
+  sector   Sector @relation(fields: [sectorId], references: [id])
+  sectorId Int
+
+  @@id([branchId, sectorId])
+}
+
+model Occupation {
+  id                   Int                  @id @default(autoincrement())
+  name                 String               @unique
+  qualifications       Qualification[]
+  sectorToOccupation   SectorToOccupation[]
+  branchToOccupations  BranchToOccupation[]
+}
+
+model SectorToOccupation {
+  occupation    Occupation @relation(fields: [occupationId], references: [id])
+  occupationId  Int
+  sector        Sector @relation(fields: [sectorId], references: [id])
+  sectorId      Int
+  
+  @@id([occupationId, sectorId])
+  @@index([sectorId])
+  @@index([occupationId])
+}
+
+model BranchToOccupation {
+  branch       Branch      @relation(fields: [branchId], references: [id])
+  branchId     Int
+  occupation   Occupation  @relation(fields: [occupationId], references: [id])
+  occupationId Int
+
+  @@id([branchId, occupationId])
+  @@index([branchId])
+  @@index([occupationId])
+}
+
+model Level {
+  id             Int            @id @default(autoincrement())
+  name           String
+  qualifications Qualification[]
+}
+
+model Qualification {
+  id            Int      @id @default(autoincrement())
+  occupationId  Int
+  levelId       Int
+  name          String
+
+  occupation Occupation @relation(fields: [occupationId], references: [id])
+  level  Level  @relation(fields: [levelId], references: [id])
+
+  units QualificationToUnit[]
+
+  @@index([occupationId])
+  @@index([levelId])
+}
+
+model Skill {
+  id         Int        @id @default(autoincrement())
+  name       String
+  units      UnitToSkill[]   // The units that have this skill
+}
+
+model Knowledge {
+  id         Int         @id @default(autoincrement())
+  name       String
+  units      UnitToKnowledge[]  // The units that have this knowledge
+}
+
+model Unit {
+  id            Int          @id @default(autoincrement())
+  code          String
+  name          String
+  description   String?
+  skills        UnitToSkill[]           // The skills this unit covers
+  knowledge     UnitToKnowledge[]       // The knowledge this unit covers
+  qualifications QualificationToUnit[]  // Qualifications this unit belongs to
+}
+
+model QualificationToUnit {
+  qualificationId Int
+  unitId          Int
+  qualification   Qualification @relation(fields: [qualificationId], references: [id])
+  unit            Unit          @relation(fields: [unitId], references: [id])
+
+  @@id([qualificationId, unitId])
+  @@index([qualificationId])
+  @@index([unitId])
+}
+
+model UnitToSkill {
+  unitId  Int
+  skillId Int
+  unit    Unit  @relation(fields: [unitId], references: [id])
+  skill   Skill @relation(fields: [skillId], references: [id])
+
+  @@id([unitId, skillId])
+  @@index([unitId])
+  @@index([skillId])
+}
+
+model UnitToKnowledge {
+  unitId     Int
+  knowledgeId Int
+  unit       Unit      @relation(fields: [unitId], references: [id])
+  knowledge  Knowledge @relation(fields: [knowledgeId], references: [id])
+
+  @@id([unitId, knowledgeId])
+  @@index([unitId])
+  @@index([knowledgeId])
+}
