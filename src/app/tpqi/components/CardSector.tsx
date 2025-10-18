@@ -1,6 +1,3 @@
-"use client";
-
-import React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,12 +9,7 @@ type CardSectorProps = {
   onClick?: (id: number) => void;
 };
 
-const CardSector: React.FC<CardSectorProps> = ({
-  id,
-  name,
-  className,
-  onClick,
-}) => {
+const CardSector = ({ id, name, className, onClick }: CardSectorProps) => {
   const idStr = String(id);
 
   // Extract category prefix for visual hierarchy

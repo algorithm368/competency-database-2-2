@@ -1,5 +1,4 @@
-"use client";
-
+import Link from "next/link";
 import {
   CheckCircle,
   Database,
@@ -10,7 +9,6 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { useRouter } from "next/navigation";
 
 const iconMap: Record<string, LucideIcon> = {
   RefreshCw,
@@ -29,9 +27,6 @@ interface WhatsNewsSectionProps {
 }
 
 export function WhatsNewsSection({ features }: WhatsNewsSectionProps) {
-  const router = useRouter();
-  const navigateToResults = () => router.push("/results");
-
   return (
     <section id="version-2-features" className="relative py-20">
       <div className="relative max-w-6xl mx-auto px-6">
@@ -88,13 +83,14 @@ export function WhatsNewsSection({ features }: WhatsNewsSectionProps) {
                 database, and modern architecture. You now have the most
                 powerful tool for competency assessment at your fingertips.
               </p>
-              <Button
-                onClick={navigateToResults}
-                className="text-white px-6 py-3 rounded-md shadow"
-                size="lg"
-              >
-                Start Exploring Now
-              </Button>
+              <Link href="/results" passHref>
+                <Button
+                  className="text-white px-6 py-3 rounded-md shadow"
+                  size="lg"
+                >
+                  Start Exploring Now
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         </div>
