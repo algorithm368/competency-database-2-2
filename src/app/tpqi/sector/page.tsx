@@ -31,7 +31,7 @@ interface Sector {
   name: string;
 }
 
-export default async function TpqiPage({
+export default async function Sector({
   searchParams,
 }: Readonly<TpqiPageProps>) {
   const params = await searchParams;

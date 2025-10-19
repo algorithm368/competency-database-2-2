@@ -18,13 +18,12 @@ export async function GET(_: Request, context: Params) {
     const { id } = await context.params;
     const sectorId = parseId(id, "sector");
 
-    // Get sector from database
     const sector = await prisma.sector.findUnique({
       where: { id: sectorId },
       include: {
         branches: { include: { branch: true } },
         occupations: { include: { occupation: true } },
-        qualifications: { include: { level: true } },
+        qualifications: { include: { level: true, branch: true } },
       },
     });
 
@@ -32,43 +31,39 @@ export async function GET(_: Request, context: Params) {
       return NextResponse.json({ error: "Sector not found" }, { status: 404 });
     }
 
-    // Convert branches to simple format
+    // Convert branches
     const branches = sector.branches.map((item) => ({
       id: item.branch.id,
       name: item.branch.name,
     }));
 
-    // Get levels and branches for each occupation
+    // Prepare occupations with levels and branches
     const levelsByOccupation: Record<number, any[]> = {};
     const branchesByOccupation: Record<number, number | null> = {};
 
     for (const qual of sector.qualifications) {
-      if (!qual.occupationId) continue;
-      if (!qual.level) continue;
+      if (!qual.occupationId || !qual.level) continue;
 
-      // Group levels
       if (!levelsByOccupation[qual.occupationId]) {
         levelsByOccupation[qual.occupationId] = [];
       }
 
-      const levelExists = levelsByOccupation[qual.occupationId].some(
-        (l) => l.levelId === qual.levelId
+      const exists = levelsByOccupation[qual.occupationId].some(
+        (l) => l.levelId === qual.levelId,
       );
 
-      if (!levelExists) {
+      if (!exists) {
         levelsByOccupation[qual.occupationId].push({
           levelId: qual.levelId,
           levelName: qual.level.name,
         });
       }
 
-      // Set branch (use first one found, or most recent)
       if (qual.branchId) {
         branchesByOccupation[qual.occupationId] = qual.branchId;
       }
     }
 
-    // Convert occupations to simple format with single branch
     const occupations = sector.occupations.map((item) => ({
       id: item.occupation.id,
       name: item.occupation.name,
@@ -76,12 +71,21 @@ export async function GET(_: Request, context: Params) {
       levels: levelsByOccupation[item.occupationId] || [],
     }));
 
-    // Return response
+    // Include all qualifications directly
+    const qualifications = sector.qualifications.map((q) => ({
+      id: q.id,
+      occupationId: q.occupationId,
+      branchId: q.branchId,
+      levelId: q.levelId,
+      levelName: q.level?.name || null,
+    }));
+
     return NextResponse.json({
       id: sector.id,
       name: sector.name,
       branches,
       occupations,
+      qualifications,
     });
   } catch (error: any) {
     console.error("Error fetching sector:", error.message);

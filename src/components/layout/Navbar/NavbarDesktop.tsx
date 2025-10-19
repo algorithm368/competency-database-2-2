@@ -13,7 +13,7 @@ export default function DesktopNavbar() {
           <Link href="/about">About</Link>
         </Button>
         <Button asChild variant="link" size="sm">
-          <Link href="/tpqi">TPQI</Link>
+          <Link href="/tpqi/sector">TPQI</Link>
         </Button>
       </div>
     </nav>
