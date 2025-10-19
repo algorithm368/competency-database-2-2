@@ -19,7 +19,7 @@ export function CardBranch({ branches }: CardBranchProps) {
       <CardContent>
         {branches && branches.length > 0 ? (
           <ul className="space-y-2">
-            {branches.map((sb) => (
+            {branches.map((sb: SectorWithRelations["branches"][number]) => (
               <li key={sb.branchId}>
                 <Link
                   href={`/tpqi/branch/${sb.branchId}`}
