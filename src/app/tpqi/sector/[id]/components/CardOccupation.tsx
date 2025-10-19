@@ -19,7 +19,7 @@ export function CardOccupation({ occupations }: CardOccupationProps) {
       <CardContent>
         {occupations && occupations.length > 0 ? (
           <ul className="space-y-2">
-            {occupations.map((so) => (
+            {occupations.map((so: CardOccupationProps["occupations"][number]) => (
               <li key={so.occupationId}>
                 <Link
                   href={`/tpqi/occupation/${so.occupationId}`}
