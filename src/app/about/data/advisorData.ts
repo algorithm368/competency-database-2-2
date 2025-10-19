@@ -1,5 +1,4 @@
 import React, { type ReactNode } from "react";
-import type { StaticImageData } from "next/image";
 import { Globe, Share2 } from "lucide-react";
 
 /* Local types (kept in this file for simplicity) */
@@ -25,7 +24,7 @@ export interface SocialLink {
 export interface AdvisorInfo {
   name: string;
   englishName?: string;
-  image?: StaticImageData | string;
+  image: string;
   affiliations?: Affiliation[];
   contact?: ContactInfo;
   socialLinks?: SocialLink[];

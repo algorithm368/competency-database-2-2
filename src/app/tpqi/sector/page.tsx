@@ -3,7 +3,7 @@ import CardSector from "./components/CardSector";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { getSectors } from "@/lib/sector";
+import { getSectors } from "@/app/tpqi/sector/_lib/sector";
 
 interface TpqiPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -31,7 +31,7 @@ interface Sector {
   name: string;
 }
 
-export default async function TpqiPage({
+export default async function Sector({
   searchParams,
 }: Readonly<TpqiPageProps>) {
   const params = await searchParams;
@@ -143,3 +143,5 @@ export default async function TpqiPage({
     </main>
   );
 }
+
+export const dynamic = "force-static";

@@ -1,4 +1,4 @@
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { advisorInfo } from "@/app/about/data/advisorData";
@@ -12,7 +12,7 @@ export default function CardAdvisor() {
       <Card className="border border-border/40 shadow-sm w-full">
         <CardHeader className="flex flex-col items-center gap-4">
           <Image
-            src={advisorInfo.image as StaticImageData | string}
+            src={advisorInfo.image}
             alt={advisorInfo.name ?? "Advisor"}
             width={128}
             height={128}
