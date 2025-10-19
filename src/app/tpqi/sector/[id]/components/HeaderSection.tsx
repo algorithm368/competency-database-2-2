@@ -2,8 +2,8 @@ import { Badge } from "@/components/ui/badge";
 import type { CategoryInfo } from "../../_lib/types";
 
 interface SectorHeaderProps {
-  name: string;
-  categoryInfo: CategoryInfo;
+  readonly name: string;
+  readonly categoryInfo: CategoryInfo;
 }
 
 export function SectorHeader({ name, categoryInfo }: SectorHeaderProps) {

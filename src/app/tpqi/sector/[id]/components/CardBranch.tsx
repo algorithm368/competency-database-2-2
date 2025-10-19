@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { SectorWithRelations } from "../../_lib/types";
 
 interface CardBranchProps {
-  branches: SectorWithRelations["branches"];
+  readonly branches: SectorWithRelations["branches"];
 }
 
 export function CardBranch({ branches }: CardBranchProps) {

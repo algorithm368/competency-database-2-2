@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { SectorWithRelations } from "../../_lib/types";
 
 interface CardOccupationProps {
-  occupations: SectorWithRelations["occupations"];
+  readonly occupations: SectorWithRelations["occupations"];
 }
 
 export function CardOccupation({ occupations }: CardOccupationProps) {

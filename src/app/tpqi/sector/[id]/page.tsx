@@ -12,7 +12,7 @@ import { CardQualification } from "./components/CardQulification";
 import type { SectorPageParams } from "../_lib/types";
 
 interface SectorPageProps {
-  params: Promise<SectorPageParams>;
+  readonly params: Promise<SectorPageParams>;
 }
 
 export default async function SectorPage({ params }: SectorPageProps) {

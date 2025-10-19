@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { SectorWithRelations } from "../../_lib/types";
 
 interface CardQualificationProps {
-  qualifications: SectorWithRelations["qualifications"];
+  readonly qualifications: SectorWithRelations["qualifications"];
 }
 
 export function CardQualification({
