@@ -64,4 +64,12 @@ export default async function SectorPage({ params }: SectorPageProps) {
   );
 }
 
-export const dynamic = "force-static";
+// export const dynamic = "force-static";
+
+// export async function generateStaticParams() {
+//   const sectors = await getSectors();
+
+//   return sectors.map((sector) => ({
+//     id: sector.id.toString(),
+//   }));
+// }
