@@ -14,7 +14,7 @@ export function CardOccupation({ occupations }: CardOccupationProps) {
         <CardTitle className="flex items-center gap-2">
           <Briefcase className="w-5 h-5 text-primary" />
           อาชีพที่เกี่ยวข้อง ({occupations?.length || 0})
-        </CardTitle>
+      </CardTitle>
       </CardHeader>
       <CardContent>
         {occupations && occupations.length > 0 ? (

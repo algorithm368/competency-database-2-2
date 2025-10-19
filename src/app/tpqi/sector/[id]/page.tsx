@@ -8,7 +8,7 @@ import { getCategoryInfo } from "../_lib/utils";
 import { SectorHeader } from "./components/HeaderSection";
 import { CardBranch } from "./components/CardBranch";
 import { CardOccupation } from "./components/CardOccupation";
-import { CardQualification } from "./components/CardQulification";
+import { CardQualification } from "./components/CardQualification";
 import type { SectorPageParams } from "../_lib/types";
 
 interface SectorPageProps {
