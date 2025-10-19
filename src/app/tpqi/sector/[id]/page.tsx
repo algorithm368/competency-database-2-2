@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { getSectorById } from "../_lib/sector";
+import { getSectors, getSectorById } from "../_lib/sector";
 import { getCategoryInfo } from "../_lib/utils";
 import { SectorHeader } from "./components/HeaderSection";
 import { CardBranch } from "./components/CardBranch";
@@ -64,12 +64,12 @@ export default async function SectorPage({ params }: SectorPageProps) {
   );
 }
 
-// export const dynamic = "force-static";
+export const dynamic = "force-static";
 
-// export async function generateStaticParams() {
-//   const sectors = await getSectors();
+export async function generateStaticParams() {
+  const sectors = await getSectors();
 
-//   return sectors.map((sector) => ({
-//     id: sector.id.toString(),
-//   }));
-// }
+  return sectors.map((sector) => ({
+    id: sector.id.toString(),
+  }));
+}
