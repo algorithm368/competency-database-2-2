@@ -1,17 +1,25 @@
-// src/app/tpqi/sector/_lib/sector.ts
 import prisma from "@/lib/prisma";
+import fs from "fs/promises";
+import path from "path";
 
 export interface Sector {
   id: number;
   name: string;
 }
 
+const dataPath = path.join(
+  process.cwd(),
+  "src/app/tpqi/sector/data/sectors.json",
+);
+
 export async function getSectors(): Promise<Sector[]> {
   try {
-    return await prisma.sector.findMany({
-      select: { id: true, name: true },
-      orderBy: { name: "asc" },
-    });
+    const jsonData = await fs.readFile(dataPath, "utf-8");
+    const sectors = JSON.parse(jsonData);
+
+    return sectors
+      .map((s: any) => ({ id: s.id, name: s.name }))
+      .sort((a: Sector, b: Sector) => a.name.localeCompare(b.name));
   } catch (error) {
     console.error("Failed to fetch sectors:", error);
     throw new Error("Failed to fetch sectors");
