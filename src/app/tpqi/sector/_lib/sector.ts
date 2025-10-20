@@ -15,11 +15,9 @@ const dataPath = path.join(
 export async function getSectors(): Promise<Sector[]> {
   try {
     const jsonData = await fs.readFile(dataPath, "utf-8");
-    const sectors = JSON.parse(jsonData);
+    const sectors: Sector[] = JSON.parse(jsonData); // ใช้ type Sector ตรง ๆ
 
-    return sectors
-      .map((s: any) => ({ id: s.id, name: s.name }))
-      .sort((a: Sector, b: Sector) => a.name.localeCompare(b.name));
+    return sectors.sort((a, b) => a.name.localeCompare(b.name));
   } catch (error) {
     console.error("Failed to fetch sectors:", error);
     throw new Error("Failed to fetch sectors");
