@@ -2,15 +2,13 @@
   "name": "competency-v2-2",
   "version": "0.1.0",
   "private": true,
-
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "prisma generate --schema=./prisma/tpqi/schema.prisma && next build --turbopack",
     "start": "next start",
     "lint": "eslint",
     "postinstall": "prisma generate --schema=./prisma/tpqi/schema.prisma"
-  
-},
+  },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-dialog": "^1.1.15",
@@ -20,6 +18,7 @@
     "@radix-ui/react-slot": "^1.2.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "csv-parse": "^6.1.0",
     "lucide-react": "^0.545.0",
     "next": "15.5.5",
     "react": "19.1.0",

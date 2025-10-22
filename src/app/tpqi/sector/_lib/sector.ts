@@ -1,25 +1,38 @@
 import prisma from "@/lib/prisma";
 import fs from "fs/promises";
 import path from "path";
+import { parse } from "csv-parse/sync";
 
-export interface Sector {
+interface Sector {
   id: number;
   name: string;
 }
 
-const dataPath = path.join(
-  process.cwd(),
-  "src/app/tpqi/sector/data/sectors.json",
-);
+interface SectorCSV {
+  id: string;
+  name: string;
+}
+
+const dataPath = path.join(process.cwd(), "prisma/tpqi/seed/data/Sector.csv");
 
 export async function getSectors(): Promise<Sector[]> {
   try {
-    const jsonData = await fs.readFile(dataPath, "utf-8");
-    const sectors: Sector[] = JSON.parse(jsonData); // ใช้ type Sector ตรง ๆ
+    const csvData = await fs.readFile(dataPath, "utf-8");
+
+    const records: SectorCSV[] = parse(csvData, {
+      columns: true,
+      skip_empty_lines: true,
+    });
+
+    // แปลง string id เป็น number
+    const sectors: Sector[] = records.map((r) => ({
+      id: Number(r.id),
+      name: r.name,
+    }));
 
     return sectors.sort((a, b) => a.name.localeCompare(b.name));
   } catch (error) {
-    console.error("Failed to fetch sectors:", error);
+    console.error("Failed to fetch sectors from CSV:", error);
     throw new Error("Failed to fetch sectors");
   }
 }
