@@ -1,6 +1,7 @@
 import { parse } from "csv-parse/sync";
 import fs from "fs/promises";
 import path from "path";
+import prisma from "@/lib/prisma";
 
 interface Branch {
   id: number;
@@ -37,4 +38,26 @@ export async function getBranch(): Promise<Branch[]> {
   throw new Error();
 }
 
-getBranch();
+export async function getBranchById(id: number) {
+  try {
+    return await prisma.branch.findUnique({
+      where: { id },
+      include: {
+        occupations: {
+          include: { occupation: true },
+          orderBy: { occupation: { name: "asc" } },
+        },
+        qualifications: {
+          include: {
+            level: true,
+            branch: true,
+            occupation: true,
+          },
+        },
+      },
+    });
+  } catch (error) {
+    console.error(`Failed to fetch branch with id ${id}:`, error);
+    throw new Error("Failed to fetch branch sector by id");
+  }
+}
