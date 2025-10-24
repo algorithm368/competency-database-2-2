@@ -12,12 +12,11 @@ import { CardQualification } from "./components/CardQualification";
 import type { SectorPageParams } from "../_lib/types";
 
 interface SectorPageProps {
-  readonly params: Promise<SectorPageParams>;
+  readonly params: Promise<{ id: string }>;
 }
 
 export default async function SectorPage({ params }: SectorPageProps) {
   const { id: idParam } = await params;
-
   // Validate id from params
   const id = Number(idParam);
 

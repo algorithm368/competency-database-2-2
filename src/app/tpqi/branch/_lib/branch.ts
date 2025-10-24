@@ -53,6 +53,7 @@ export async function getBranchById(id: number) {
             branch: true,
             occupation: true,
           },
+          orderBy: { id: "asc" },
         },
       },
     });
