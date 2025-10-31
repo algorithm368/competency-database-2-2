@@ -1,4 +1,4 @@
-import prisma from "@/lib/prisma";
+import prisma from "@/lib/tpqi-client";
 
 export async function getOccupationById(id: number) {
   try {

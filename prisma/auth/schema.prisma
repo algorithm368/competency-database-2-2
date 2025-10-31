@@ -1,0 +1,95 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL_AUTH")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../node_modules/.prisma/auth"
+}
+
+model User {
+  id            String   @id @default(cuid())
+  name          String
+  titleId       String?
+  title         Title?   @relation(fields: [titleId], references: [id])
+  phone         String?
+  email         String   @unique
+  emailVerified Boolean  @default(false)
+  image         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now()) @updatedAt
+
+  sessions Session[]
+  accounts Account[]
+  address  Address?
+
+  @@map("user")
+}
+
+model Address {
+  id          String  @id @default(cuid())
+  street      String
+  subdistrict String
+  district    String
+  province    String
+  postalCode  String
+  userId      String? @unique
+  user        User?   @relation(fields: [userId], references: [id])
+
+  @@map("address")
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id @default(cuid())
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @default(now()) @updatedAt
+
+  @@unique([accountId, providerId])
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id @default(cuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt
+
+  @@index([identifier])
+  @@map("verification")
+}
+
+model Title {
+  id    String @id @default(cuid())
+  name  String @unique
+  users User[]
+}

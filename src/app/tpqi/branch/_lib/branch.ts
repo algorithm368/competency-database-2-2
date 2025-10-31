@@ -1,7 +1,7 @@
 import { parse } from "csv-parse/sync";
 import fs from "fs/promises";
 import path from "path";
-import prisma from "@/lib/prisma";
+import prisma from "@/lib/tpqi-client";
 
 interface Branch {
   id: number;

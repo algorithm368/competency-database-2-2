@@ -34,9 +34,7 @@ export default function Footer() {
 
             <div>
               <div className="text-xl font-bold">Competency</div>
-              <div className="text-[color:var(--muted-foreground)] text-xs">
-                Database System
-              </div>
+              <div className="text-primary text-xs">Database System</div>
             </div>
           </div>
 
@@ -53,20 +51,18 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-1 transition-colors duration-200"
                 >
-                  <span className="text-[color:var(--primary-foreground)]">
-                    {l.label}
-                  </span>
-                  <ExternalLink className="w-3 h-3 text-[color:var(--primary-foreground)]" />
+                  <span className="text-primary">{l.label}</span>
+                  <ExternalLink className="w-3 h-3 text-primary" />
                 </a>
               ) : (
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="text-[color:var(--primary-foreground)] transition-colors duration-200"
+                  className="text-primary transition-colors duration-200"
                 >
                   {l.label}
                 </Link>
-              )
+              ),
             )}
           </nav>
         </div>
