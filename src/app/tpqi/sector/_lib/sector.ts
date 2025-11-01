@@ -1,4 +1,4 @@
-import prisma from "@/lib/tpqi-client";
+import prisma from "@/lib/prisma-tpqi";
 import fs from "fs/promises";
 import path from "path";
 import { parse } from "csv-parse/sync";
