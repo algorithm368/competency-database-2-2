@@ -41,6 +41,9 @@ export default async function SectorPage({ params }: SectorPageProps) {
           </Link>
         </Button>
 
+        {/* Header Section */}
+        <SectorHeader name={sector.name} />
+
         <Separator className="my-8" />
 
         {/* Content Grid */}

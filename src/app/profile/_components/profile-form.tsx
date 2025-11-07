@@ -25,9 +25,9 @@ type UserData = Readonly<{
 
 export default function ProfileForm({
   initialUser,
-}: {
+}: Readonly<{
   initialUser: UserWithRelations;
-}) {
+}>) {
   const [user, setUser] = useState<UserData>(initialUser);
   const [saving, setSaving] = useState(false);
 
