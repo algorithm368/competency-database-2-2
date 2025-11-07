@@ -1,17 +1,18 @@
-"use client";
-import { useState, useEffect } from "react";
-import MobileNavbar from "./MobileNavbar";
-import DesktopNavbar from "./DesktopNavbar";
+import MobileNavbar from "./NavbarMobile";
+import DesktopNavbar from "./NavbarDesktop";
 
 export default function Navbar() {
-  const [isMobile, setIsMobile] = useState(false);
+  return (
+    <>
+      {/* Mobile shown on small screens, hidden on md+ */}
+      <div className="md:hidden">
+        <MobileNavbar />
+      </div>
 
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return isMobile ? <MobileNavbar /> : <DesktopNavbar />;
+      {/* Desktop hidden on small screens, visible from md */}
+      <div className="hidden md:block">
+        <DesktopNavbar />
+      </div>
+    </>
+  );
 }

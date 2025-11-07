@@ -1,7 +1,14 @@
 "use client";
 import { useState } from "react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import LoginButton from "./LoginButton";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 export default function MobileNavbar() {
   const [open, setOpen] = useState(false);
@@ -15,6 +22,11 @@ export default function MobileNavbar() {
           <Button variant="outline">☰</Button>
         </SheetTrigger>
         <SheetContent side="right" className="w-64">
+          {/* Accessible title, hidden visually */}
+          <VisuallyHidden>
+            <SheetTitle>Mobile Navigation Menu</SheetTitle>
+          </VisuallyHidden>
+
           <div className="flex flex-col gap-4 mt-4">
             <Button variant="link" onClick={() => setOpen(false)}>
               Home
@@ -25,6 +37,7 @@ export default function MobileNavbar() {
             <Button variant="link" onClick={() => setOpen(false)}>
               Contact
             </Button>
+            <LoginButton />
           </div>
         </SheetContent>
       </Sheet>

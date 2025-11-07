@@ -1,0 +1,165 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL_TPQI")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../node_modules/.prisma/tpqi"
+}
+
+// -----------------------------
+// Sector & Branch
+// -----------------------------
+model Sector {
+  id             Int                @id @default(autoincrement())
+  name           String             @unique
+  branches       SectorBranch[]
+  occupations    SectorOccupation[]
+  qualifications Qualification[]
+}
+
+model Branch {
+  id             Int                @id @default(autoincrement())
+  name           String             @unique
+  sectors        SectorBranch[]
+  occupations    BranchOccupation[]
+  qualifications Qualification[]
+}
+
+model SectorBranch {
+  sector   Sector @relation(fields: [sectorId], references: [id], onDelete: Cascade)
+  sectorId Int
+  branch   Branch @relation(fields: [branchId], references: [id], onDelete: Cascade)
+  branchId Int
+
+  @@id([sectorId, branchId])
+}
+
+// -----------------------------
+// Occupation
+// -----------------------------
+model Occupation {
+  id             Int                @id @default(autoincrement())
+  name           String             @unique
+  qualifications Qualification[]
+  sectors        SectorOccupation[]
+  branches       BranchOccupation[]
+  levels         OccupationLevel[]
+}
+
+model SectorOccupation {
+  sector       Sector     @relation(fields: [sectorId], references: [id], onDelete: Cascade)
+  sectorId     Int
+  occupation   Occupation @relation(fields: [occupationId], references: [id], onDelete: Cascade)
+  occupationId Int
+
+  @@id([sectorId, occupationId])
+}
+
+model BranchOccupation {
+  branch       Branch     @relation(fields: [branchId], references: [id], onDelete: Cascade)
+  branchId     Int
+  occupation   Occupation @relation(fields: [occupationId], references: [id], onDelete: Cascade)
+  occupationId Int
+
+  @@id([branchId, occupationId])
+}
+
+// -----------------------------
+// Level
+// -----------------------------
+model Level {
+  id             Int               @id @default(autoincrement())
+  name           String            @unique
+  qualifications Qualification[]
+  occupations    OccupationLevel[]
+}
+
+// Junction table for Occupation <-> Level many-to-many
+model OccupationLevel {
+  occupation   Occupation @relation(fields: [occupationId], references: [id], onDelete: Cascade)
+  occupationId Int
+  level        Level      @relation(fields: [levelId], references: [id], onDelete: Cascade)
+  levelId      Int
+
+  @@id([occupationId, levelId])
+}
+
+// -----------------------------
+// Qualification
+// -----------------------------
+model Qualification {
+  id           Int  @id @default(autoincrement())
+  sectorId     Int? // nullable
+  branchId     Int? // nullable
+  occupationId Int? // nullable
+  levelId      Int? // nullable
+
+  sector     Sector?     @relation(fields: [sectorId], references: [id], onDelete: Restrict)
+  branch     Branch?     @relation(fields: [branchId], references: [id], onDelete: Restrict)
+  occupation Occupation? @relation(fields: [occupationId], references: [id], onDelete: Restrict)
+  level      Level?      @relation(fields: [levelId], references: [id], onDelete: Restrict)
+
+  units QualificationUnit[]
+
+  @@index([sectorId])
+  @@index([branchId])
+  @@index([occupationId])
+  @@index([levelId])
+}
+
+// -----------------------------
+// Unit / Skill / Knowledge
+// -----------------------------
+model Unit {
+  id             Int                 @id @default(autoincrement())
+  code           String
+  name           String
+  description    String?
+  skills         UnitSkill[]
+  knowledge      UnitKnowledge[]
+  qualifications QualificationUnit[]
+}
+
+model Skill {
+  id    Int         @id @default(autoincrement())
+  name  String      @unique
+  units UnitSkill[]
+}
+
+model Knowledge {
+  id    Int             @id @default(autoincrement())
+  name  String          @unique
+  units UnitKnowledge[]
+}
+
+// -----------------------------
+// Junction tables
+// -----------------------------
+model QualificationUnit {
+  qualification   Qualification @relation(fields: [qualificationId], references: [id], onDelete: Cascade)
+  qualificationId Int
+  unit            Unit          @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  unitId          Int
+
+  @@id([qualificationId, unitId])
+}
+
+model UnitSkill {
+  unit    Unit  @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  unitId  Int
+  skill   Skill @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  skillId Int
+
+  @@id([unitId, skillId])
+}
+
+model UnitKnowledge {
+  unit        Unit      @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  unitId      Int
+  knowledge   Knowledge @relation(fields: [knowledgeId], references: [id], onDelete: Cascade)
+  knowledgeId Int
+
+  @@id([unitId, knowledgeId])
+}

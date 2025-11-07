@@ -1,0 +1,22 @@
+import { tpqiPrisma } from "@/lib/prisma-tpqi";
+
+export async function getOccupationById(id: number) {
+  try {
+    return await tpqiPrisma.occupation.findUnique({
+      where: { id },
+      include: {
+        qualifications: {
+          include: {
+            level: true,
+            branch: true,
+            occupation: true,
+          },
+          orderBy: { id: "asc" },
+        },
+      },
+    });
+  } catch (error) {
+    console.error(`Failed to fetch occupation with id ${id}:`, error);
+    throw new Error(`Failed to fetch occupation by id`);
+  }
+}

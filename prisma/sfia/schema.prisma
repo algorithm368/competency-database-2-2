@@ -1,0 +1,64 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL_SFIA")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../node_modules/.prisma/sfia"
+}
+
+model Category {
+  id            Int           @id @default(autoincrement())
+  name          String        @unique
+  subCategories SubCategory[]
+}
+
+model SubCategory {
+  id         Int    @id @default(autoincrement())
+  name       String
+  categoryId Int
+
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  skills   Skill[]
+
+  @@unique([name, categoryId])
+}
+
+model Skill {
+  id            Int    @id @default(autoincrement())
+  code          String @unique
+  name          String
+  subCategoryId Int
+
+  subCategory SubCategory  @relation(fields: [subCategoryId], references: [id], onDelete: Cascade)
+  levels      SkillLevel[]
+
+  @@unique([name, subCategoryId])
+}
+
+model Level {
+  id     Int          @id @default(autoincrement())
+  name   String       @unique
+  skills SkillLevel[]
+}
+
+model SkillLevel {
+  id      Int @id @default(autoincrement())
+  skillId Int
+  levelId Int
+
+  skill   Skill         @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  level   Level         @relation(fields: [levelId], references: [id], onDelete: Restrict)
+  details Description[]
+
+  @@unique([skillId, levelId])
+}
+
+model Description {
+  id           Int    @id @default(autoincrement())
+  content      String
+  skillLevelId Int
+
+  skillLevel SkillLevel @relation(fields: [skillLevelId], references: [id], onDelete: Cascade)
+}
