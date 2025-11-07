@@ -1,0 +1,147 @@
+1,ITSP,Strategic planning,1
+2,ISCO,Information systems coordination,1
+3,IRMG,Information management,1
+4,STPL,Enterprise and business architecture,1
+5,ARCH,Solution architecture,1
+6,INOV,Innovation management,1
+7,EMRG,Emerging technology monitoring,1
+8,RSCH,Formal research,1
+9,SUST,Sustainability,1
+10,FMIT,Financial management,2
+11,INVA,Investment appraisal,2
+12,BENM,Benefits management,2
+13,BUDF,Budgeting and forecasting,2
+14,FIAN,Financial analysis,2
+15,COMG,Cost management,2
+16,DEMM,Demand management,2
+17,MEAS,Measurement,2
+18,SCTY,Information security,3
+19,INAS,Information assurance,3
+20,PEDP,Information and data compliance,3
+21,VURE,Vulnerability research,3
+22,THIN,Threat intelligence,3
+23,GOVN,Governance,4
+24,BURM,Risk management,4
+25,AIDE,Artificial intelligence (AI) and data ethics,4
+26,AUDT,Audit,4
+27,QUMG,Quality management,4
+28,QUAS,Quality assurance,4
+29,CNSL,Consultancy,5
+30,TECH,Specialist advice,5
+31,METL,Methods and tools,5
+32,POMG,Portfolio management,6
+33,PGMG,Programme management,6
+34,PRMG,Project management,6
+35,PROF,"Portfolio, programme and project support",6
+36,DEMG,Delivery management,6
+37,BUSA,Business situation analysis,7
+38,FEAS,Feasibility assessment,7
+39,REQM,Requirements definition and management,7
+40,BSMO,Business modelling,7
+41,BPTS,User acceptance testing,7
+42,BPRE,Business process improvement,8
+43,OCDV,Organisational capability development,8
+44,JADN,Job analysis and design,8
+45,ORDI,Organisation design and implementation,8
+46,CIPM,Organisational change management,8
+47,OCEN,Organisational change enablement,8
+48,PROD,Product management,9
+49,DLMG,Systems development management,9
+50,SLEN,Systems and software lifecycle engineering,9
+51,DESN,Systems design,9
+52,SWDN,Software design,9
+53,NTDS,Network design,9
+54,IFDN,Infrastructure design,9
+55,HWDE,Hardware design,9
+56,PROG,Programming/software development,9
+57,SINT,Systems integration and build,9
+58,TEST,Functional testing,9
+59,NFTS,Non-functional testing,9
+60,PRTS,Process testing,9
+61,PORT,Software configuration,9
+62,RESD,Real-time/embedded systems development,9
+63,SFEN,Safety engineering,9
+64,SFAS,Safety assessment,9
+65,RFEN,Radio frequency engineering,9
+66,ADEV,Animation development,9
+67,DATM,Data management,10
+68,DTAN,Data modelling and design,10
+69,DBDS,Database design,10
+70,DAAN,Data analytics,10
+71,DATS,Data science,10
+72,MLNG,Machine learning,10
+73,BINT,Business intelligence,10
+74,DENG,Data engineering,10
+75,VISL,Data visualisation,10
+76,URCH,User research,11
+77,CEXP,Customer experience,11
+78,ACIN,Accessibility and inclusion,11
+79,UNAN,User experience analysis,11
+80,HCEV,User experience design,11
+81,USEV,User experience evaluation,11
+82,INCA,Content design and authoring,12
+83,ICPM,Content publishing,12
+84,KNOW,Knowledge management,12
+85,GRDN,Graphic design,12
+86,SCMO,Scientific modelling,13
+87,NUAN,Numerical analysis,13
+88,HPCC,High-performance computing,13
+89,ITMG,Technology service management,14
+90,ASUP,Application support,14
+91,ITOP,Infrastructure operations,14
+92,SYSP,System software administration,14
+93,NTAS,Network support,14
+94,HSIN,Systems installation and removal,14
+95,CFMG,Configuration management,14
+96,RELM,Release management,14
+97,DEPL,Deployment,14
+98,STMG,Storage management,14
+99,DCMA,Facilities management,14
+100,SLMO,Service level management,15
+101,SCMG,Service catalogue management,15
+102,AVMT,Availability management,15
+103,COPL,Continuity management,15
+104,CPMG,Capacity management,15
+105,USUP,Incident management,15
+106,PBMG,Problem management,15
+107,CHMG,Change control,15
+108,ASMG,Asset management,15
+109,SEAC,Service acceptance,15
+110,SCAD,Security operations,16
+111,IAMT,Identity and access management,16
+112,VUAS,Vulnerability assessment,16
+113,DGFS,Digital forensics,16
+114,CRIM,Cybercrime investigation,16
+115,OCOP,Offensive cyber operations,16
+116,PENT,Penetration testing,16
+117,RMGT,Records management,17
+118,ANCC,Analytical classification and coding,17
+119,DBAD,Database administration,17
+120,PEMT,Performance management,18
+121,EEXP,Employee experience,18
+122,OFCL,Organisational facilitation,18
+123,PDSV,Professional development,18
+124,WFPL,Workforce planning,18
+125,RESC,Resourcing,18
+126,ETMG,Learning and development management,19
+127,TMCR,Learning design and development,19
+128,ETDL,Learning delivery,19
+129,LEDA,Competency assessment,19
+130,CSOP,Certification scheme operation,19
+131,TEAC,Teaching,19
+132,SUBF,Subject formation,19
+133,SORC,Sourcing,20
+134,SUPP,Supplier management,20
+135,ITCM,Contract management,20
+136,RLMT,Stakeholder relationship management,20
+137,CSMG,Customer service support,20
+138,ADMN,Business administration,20
+139,BIDM,Bid/proposal management,21
+140,SALE,Selling,21
+141,SSUP,Sales support,21
+142,MKTG,Marketing management,22
+143,MRCH,Market research,22
+144,BRMG,Brand management,22
+145,CELO,Customer engagement and loyalty,22
+146,MKCM,Marketing campaign management,22
+147,DIGM,Digital marketing,22
