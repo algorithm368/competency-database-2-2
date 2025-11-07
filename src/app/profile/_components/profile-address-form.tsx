@@ -2,26 +2,7 @@
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
-interface ProfileAddressFormProps {
-  street: string;
-  subdistrict: string;
-  district: string;
-  province: string;
-  postalCode: string;
-  onStreetChange: (value: string) => void;
-  onSubdistrictChange: (value: string) => void;
-  onDistrictChange: (value: string) => void;
-  onProvinceChange: (value: string) => void;
-  onPostalCodeChange: (value: string) => void;
-  errors?: {
-    street?: string[];
-    subdistrict?: string[];
-    district?: string[];
-    province?: string[];
-    postalCode?: string[];
-  };
-}
+import { ProfileAddressFormProps } from "../_lib/types";
 
 export function ProfileAddressForm({
   street,

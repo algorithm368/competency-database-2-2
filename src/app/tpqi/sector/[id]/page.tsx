@@ -4,12 +4,10 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { getSectors, getSectorById } from "../_lib/sector";
-import { getCategoryInfo } from "../_lib/utils";
 import { SectorHeader } from "./components/HeaderSection";
 import { CardBranch } from "./components/CardBranch";
 import { CardOccupation } from "./components/CardOccupation";
 import { CardQualification } from "./components/CardQualification";
-import type { SectorPageParams } from "../_lib/types";
 
 interface SectorPageProps {
   readonly params: Promise<{ id: string }>;
@@ -32,8 +30,6 @@ export default async function SectorPage({ params }: SectorPageProps) {
     notFound();
   }
 
-  const categoryInfo = getCategoryInfo(sector.name);
-
   return (
     <main className="w-full min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
@@ -44,9 +40,6 @@ export default async function SectorPage({ params }: SectorPageProps) {
             กลับไปยังรายการสาขา
           </Link>
         </Button>
-
-        {/* Header Section */}
-        <SectorHeader name={sector.name} categoryInfo={categoryInfo} />
 
         <Separator className="my-8" />
 

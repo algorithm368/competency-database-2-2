@@ -1,30 +1,41 @@
 import { User, Address } from ".prisma/auth/client";
 
-export type UserWithRelations = User & {
+export interface UserWithRelations extends User {
   address: Address | null;
-};
+}
 
-export type UpdateUserInput = {
+export interface UpdateUserInput {
   name: string;
   phone?: string | null;
-  titleId?: string | null;
-  address?: {
-    street: string;
-    subdistrict: string;
-    district: string;
-    province: string;
-    postalCode: string;
-  } | null;
-};
+  address?: AddressInput | null;
+}
 
-export type ProfileFormData = {
-  name: string;
-  email: string;
-  phone: string;
-  titleId: string;
+export interface AddressInput {
   street: string;
   subdistrict: string;
   district: string;
   province: string;
   postalCode: string;
-};
+}
+
+export interface ProfileFormData extends AddressInput {
+  name: string;
+  email: string;
+  phone: string;
+}
+
+export type ProfileAddressFormProps = Readonly<{
+  street: string;
+  subdistrict: string;
+  district: string;
+  province: string;
+  postalCode: string;
+
+  onStreetChange: (value: string) => void;
+  onSubdistrictChange: (value: string) => void;
+  onDistrictChange: (value: string) => void;
+  onProvinceChange: (value: string) => void;
+  onPostalCodeChange: (value: string) => void;
+
+  errors?: Partial<Record<keyof AddressInput, string[]>>;
+}>;

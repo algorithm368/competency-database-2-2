@@ -14,13 +14,15 @@ export default async function SectorPage({
 }: Readonly<TpqiPageProps>) {
   const params = await searchParams;
 
-  const search =
-    typeof params.search === "string"
-      ? params.search
-      : Array.isArray(params.search)
-        ? params.search[0]
-        : "";
+  // Extract nested ternary into simple conditional logic
+  let search = "";
+  if (typeof params.search === "string") {
+    search = params.search;
+  } else if (Array.isArray(params.search)) {
+    search = params.search[0];
+  }
 
+  // Lazy-load Fuse.js and data
   if (!sectorCache) {
     sectorCache = await getSectors();
     fuseCache = new Fuse(sectorCache, {
@@ -32,9 +34,11 @@ export default async function SectorPage({
     });
   }
 
-  const filteredSectors = !search.trim()
-    ? sectorCache
-    : fuseCache!.search(search).map((r) => r.item);
+  // Avoid negated condition for clarity
+  const hasSearch = search.trim().length > 0;
+  const filteredSectors = hasSearch
+    ? fuseCache!.search(search).map((r) => r.item)
+    : sectorCache;
 
   return (
     <main className="w-full min-h-screen bg-background">

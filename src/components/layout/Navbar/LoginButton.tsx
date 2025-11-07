@@ -8,15 +8,13 @@ import { signInWithGoogle, useSession, signOut } from "@/lib/auth-client";
 export default function LoginButton() {
   const { data, isPending } = useSession();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   async function handleGoogleSignIn() {
     setLoading(true);
-    setError(null);
     try {
       await signInWithGoogle();
     } catch (err: any) {
-      setError(err.message || "Google sign in failed");
+      console.error("Google sign in failed:", err);
     } finally {
       setLoading(false);
     }

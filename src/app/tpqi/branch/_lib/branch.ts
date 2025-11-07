@@ -28,14 +28,16 @@ export async function getBranch(): Promise<Branch[]> {
       skip_empty_lines: true,
     });
 
-    const branchs: Branch[] = record.map((r: BranchCSV) => ({
+    const branches: Branch[] = record.map((r: BranchCSV) => ({
       id: Number(r.id),
       name: r.name,
     }));
 
-    return branchs.sort((a, b) => a.name.localeCompare(b.name));
-  } catch (error) {}
-  throw new Error();
+    return branches.sort((a, b) => a.name.localeCompare(b.name));
+  } catch (error) {
+    console.error("Failed to read or parse Branch.csv:", error);
+    throw new Error("Failed to load branch data from CSV file");
+  }
 }
 
 export async function getBranchById(id: number) {
@@ -59,6 +61,6 @@ export async function getBranchById(id: number) {
     });
   } catch (error) {
     console.error(`Failed to fetch branch with id ${id}:`, error);
-    throw new Error("Failed to fetch branch sector by id");
+    throw new Error(`Failed to fetch branch sector by id: ${id}`);
   }
 }

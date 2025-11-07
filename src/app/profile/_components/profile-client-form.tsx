@@ -5,8 +5,9 @@ import { ProfileInfoForm } from "./profile-info-form";
 import { ProfileAddressForm } from "./profile-address-form";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { UserWithRelations } from "../_lib/types";
 
-export function ProfileFormClient({ user }: { user: any }) {
+export function ProfileFormClient({ user }: { user: UserWithRelations }) {
   const { formData, updateField, handleSubmit, isPending, errors } =
     useProfileForm(user);
 
@@ -42,7 +43,7 @@ export function ProfileFormClient({ user }: { user: any }) {
           type="button"
           variant="outline"
           disabled={isPending}
-          onClick={() => window.location.reload()}
+          onClick={() => global.location.reload()}
         >
           Cancel
         </Button>

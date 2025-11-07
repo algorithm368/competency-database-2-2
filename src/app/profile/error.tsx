@@ -5,13 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
 
-export default function ProfileError({
-  error,
-  reset,
-}: {
+type ProfileErrorProps = Readonly<{
   error: Error & { digest?: string };
   reset: () => void;
-}) {
+}>;
+
+export default function ProfileError({ error, reset }: ProfileErrorProps) {
   useEffect(() => {
     console.error("Profile page error:", error);
   }, [error]);
@@ -39,7 +38,7 @@ export default function ProfileError({
             <Button onClick={reset}>Try Again</Button>
             <Button
               variant="outline"
-              onClick={() => (window.location.href = "/")}
+              onClick={() => (globalThis.location.href = "/")}
             >
               Go Home
             </Button>

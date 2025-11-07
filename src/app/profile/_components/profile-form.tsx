@@ -5,8 +5,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { UserWithRelations } from "../_lib/types";
 
-interface UserData {
+type UserData = Readonly<{
   id: string;
   name: string;
   email: string;
@@ -20,12 +21,12 @@ interface UserData {
     province: string;
     postalCode: string;
   } | null;
-}
+}>;
 
 export default function ProfileForm({
   initialUser,
 }: {
-  initialUser: UserData;
+  initialUser: UserWithRelations;
 }) {
   const [user, setUser] = useState<UserData>(initialUser);
   const [saving, setSaving] = useState(false);

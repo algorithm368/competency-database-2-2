@@ -3,8 +3,8 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface ProfileAvatarProps {
-  name: string;
-  image?: string | null;
+  readonly name: string;
+  readonly image?: string | null;
 }
 
 export function ProfileAvatar({ name, image }: ProfileAvatarProps) {

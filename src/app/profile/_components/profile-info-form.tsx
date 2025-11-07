@@ -3,7 +3,7 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-interface ProfileInfoFormProps {
+type ProfileInfoFormProps = Readonly<{
   name: string;
   email: string;
   phone: string;
@@ -13,7 +13,7 @@ interface ProfileInfoFormProps {
     name?: string[];
     phone?: string[];
   };
-}
+}>;
 
 export function ProfileInfoForm({
   name,
