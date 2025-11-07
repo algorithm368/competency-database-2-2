@@ -25,28 +25,32 @@ export default async function ProfilePage() {
   }
 
   return (
-    <div className="container max-w-3xl py-10">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold">Profile Settings</h1>
-        <p className="text-muted-foreground mt-2">
-          Manage your account information and preferences
-        </p>
-      </div>
-
-      <Card>
-        <CardHeader>
-          <div className="flex items-center gap-4">
-            <ProfileAvatar name={user.name} image={user.image} />
-            <div>
-              <h2 className="text-2xl font-semibold">{user.name}</h2>
-              <p className="text-sm text-muted-foreground">{user.email}</p>
-            </div>
+    <div className="flex flex-col min-h-screen bg-gray-50">
+      <main className="flex-1 w-full p-10 flex flex-col items-center">
+        <div className="w-full max-w-4xl">
+          <div className="mb-6">
+            <h1 className="text-3xl font-bold">Profile Settings</h1>
+            <p className="text-muted-foreground mt-2">
+              Manage your account information and preferences
+            </p>
           </div>
-        </CardHeader>
-        <CardContent>
-          <ProfileFormClient user={user} />
-        </CardContent>
-      </Card>
+
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-4">
+                <ProfileAvatar name={user.name} image={user.image} />
+                <div>
+                  <h2 className="text-2xl font-semibold">{user.name}</h2>
+                  <p className="text-sm text-muted-foreground">{user.email}</p>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <ProfileFormClient user={user} />
+            </CardContent>
+          </Card>
+        </div>
+      </main>
     </div>
   );
 }

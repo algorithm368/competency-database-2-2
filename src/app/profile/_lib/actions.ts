@@ -14,7 +14,7 @@ type ActionResult<T = void> = {
 };
 
 export async function updateProfile(
-  input: UpdateProfileInput
+  input: UpdateProfileInput,
 ): Promise<ActionResult> {
   try {
     // Get current user session
