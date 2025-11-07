@@ -26,7 +26,6 @@ export default function RootLayout({
         className={`${ubuntu.variable} font-ubuntu antialiased flex flex-col min-h-screen`}
       >
         <Navbar />
-        {/* Main content grows to push footer down */}
         <main className="flex-1">{children}</main>
         <Footer />
       </body>

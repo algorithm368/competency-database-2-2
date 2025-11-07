@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import Prisma from "@/lib/prisma-tpqi";
 
 export type SectorWithRelations = Prisma.SectorGetPayload<{
   include: {

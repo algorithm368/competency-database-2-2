@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "prisma generate --schema=./prisma/tpqi/schema.prisma && next build --turbopack",
+    "build": "prisma generate --schema=./prisma/auth/schema.prisma && prisma generate --schema=./prisma/sfia/schema.prisma && prisma generate --schema=./prisma/tpqi/schema.prisma && next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "postinstall": "prisma generate --schema=./prisma/tpqi/schema.prisma"
+    "postinstall": "prisma generate --schema=./prisma/auth/schema.prisma && prisma generate --schema=./prisma/sfia/schema.prisma && prisma generate --schema=./prisma/tpqi/schema.prisma"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.10",
@@ -18,10 +18,10 @@
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "better-auth": "^1.3.34",
-    "better-sqlite3": "^12.4.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "csv-parse": "^6.1.0",
+    "fuse.js": "^7.1.0",
     "lucide-react": "^0.545.0",
     "next": "16.0.0",
     "next-themes": "^0.4.6",

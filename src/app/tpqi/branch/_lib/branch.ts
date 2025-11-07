@@ -1,7 +1,7 @@
 import { parse } from "csv-parse/sync";
 import fs from "fs/promises";
 import path from "path";
-import prisma from "@/lib/prisma-tpqi";
+import { tpqiPrisma } from "@/lib/prisma-tpqi";
 
 interface Branch {
   id: number;
@@ -40,7 +40,7 @@ export async function getBranch(): Promise<Branch[]> {
 
 export async function getBranchById(id: number) {
   try {
-    return await prisma.branch.findUnique({
+    return await tpqiPrisma.branch.findUnique({
       where: { id },
       include: {
         occupations: {

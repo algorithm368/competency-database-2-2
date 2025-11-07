@@ -1,4 +1,4 @@
-import prisma from "@/lib/prisma-tpqi";
+import { tpqiPrisma } from "@/lib/prisma-tpqi";
 import fs from "fs/promises";
 import path from "path";
 import { parse } from "csv-parse/sync";
@@ -30,7 +30,7 @@ export async function getSectors(): Promise<Sector[]> {
       name: r.name,
     }));
 
-    return sectors.sort((a, b) => a.name.localeCompare(b.name));
+    return sectors.sort((a, b) => a.name.localeCompare(b.name, "th"));
   } catch (error) {
     console.error("Failed to fetch sectors from CSV:", error);
     throw new Error("Failed to fetch sectors");
@@ -39,7 +39,7 @@ export async function getSectors(): Promise<Sector[]> {
 
 export async function getSectorById(id: number) {
   try {
-    return await prisma.sector.findUnique({
+    return await tpqiPrisma.sector.findUnique({
       where: { id },
       include: {
         branches: {

@@ -8,74 +8,57 @@ generator client {
   output   = "../../node_modules/.prisma/sfia"
 }
 
-model Skill {
-  id          String                 @id @default(cuid())
-  code        String                 @unique
-  name        String
-  description String? // Overall description from Skills.csv
-  guidance    String? // Guidance notes (Skills.csv)
-  url         String? // SFIA official URL
-  categories  SkillCategoryOnSkill[]
-  levels      SkillLevel[]
-}
-
 model Category {
-  id          String                 @id @default(cuid())
-  name        String                 @unique
-  description String? // Optional: “Subcategory” or group name
-  skills      SkillCategoryOnSkill[]
+  id            Int           @id @default(autoincrement())
+  name          String        @unique
+  subCategories SubCategory[]
 }
 
-model SkillCategoryOnSkill {
-  skillId    String
-  categoryId String
-  skill      Skill    @relation(fields: [skillId], references: [id])
-  category   Category @relation(fields: [categoryId], references: [id])
+model SubCategory {
+  id         Int    @id @default(autoincrement())
+  name       String
+  categoryId Int
 
-  @@id([skillId, categoryId])
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  skills   Skill[]
+
+  @@unique([name, categoryId])
+}
+
+model Skill {
+  id            Int    @id @default(autoincrement())
+  code          String @unique
+  name          String
+  subCategoryId Int
+
+  subCategory SubCategory  @relation(fields: [subCategoryId], references: [id], onDelete: Cascade)
+  levels      SkillLevel[]
+
+  @@unique([name, subCategoryId])
 }
 
 model Level {
-  id            String           @id @default(cuid())
-  number        Int              @unique
-  guidingPhrase String? // from “Levels of Responsibility.csv”
-  essence       String? // from “Essence of the Level”
-  url           String? // SFIA level URL
-  description   String? // optional general notesa
-  attributes    LevelAttribute[]
-  skillLevels   SkillLevel[]
-}
-
-model Attribute {
-  id              String           @id @default(cuid())
-  code            String           @unique
-  name            String
-  type            String? // e.g. "Attributes" or "Business skills"
-  description     String? // Overall description
-  guidance        String? // Guidance notes
-  url             String?
-  levelAttributes LevelAttribute[]
-}
-
-model LevelAttribute {
-  levelId     String
-  attributeId String
-  value       String? // The text of Level N description per attribute
-
-  level     Level     @relation(fields: [levelId], references: [id])
-  attribute Attribute @relation(fields: [attributeId], references: [id])
-
-  @@id([levelId, attributeId])
+  id     Int          @id @default(autoincrement())
+  name   String       @unique
+  skills SkillLevel[]
 }
 
 model SkillLevel {
-  skillId     String
-  levelId     String
-  summary     String? // Optional: short text
-  description String? // “Level N description” from Skills.csv
+  id      Int @id @default(autoincrement())
+  skillId Int
+  levelId Int
 
-  skill Skill @relation(fields: [skillId], references: [id])
-  level Level @relation(fields: [levelId], references: [id])
+  skill   Skill         @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  level   Level         @relation(fields: [levelId], references: [id], onDelete: Restrict)
+  details Description[]
 
-  @@id([skillId, levelId])
+  @@unique([skillId, levelId])
+}
+
+model Description {
+  id           Int    @id @default(autoincrement())
+  content      String
+  skillLevelId Int
+
+  skillLevel SkillLevel @relation(fields: [skillLevelId], references: [id], onDelete: Cascade)
 }
