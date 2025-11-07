@@ -1,10 +1,11 @@
 import { PrismaClient } from ".prisma/tpqi/client";
 
-declare global {
-  var prisma: PrismaClient | undefined;
+const globalForPrisma = globalThis as unknown as {
+  tpqiPrisma: PrismaClient | undefined;
+};
+
+export const tpqiPrisma = globalForPrisma.tpqiPrisma ?? new PrismaClient();
+
+if (process.env.NODE_ENV !== "production") {
+  globalForPrisma.tpqiPrisma = tpqiPrisma;
 }
-
-const prisma = globalThis.prisma ?? new PrismaClient();
-if (process.env.NODE_ENV !== "production") globalThis.prisma = prisma;
-
-export default prisma;

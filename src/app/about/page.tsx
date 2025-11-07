@@ -9,21 +9,19 @@ import HeaderAbout from "@/app/about/components/HeaderAbout";
 export default function AboutPage() {
   return (
     <div className="relative min-h-screen bg-background w-full max-w-4xl mx-auto mt-10 px-10">
-      <div className="mb-20">
-        {/* Header */}
-        <HeaderAbout
-          title="About Us"
-          titleAs="h1"
-          description="Our platform is designed to help individuals identify, evaluate, and enhance their professional competencies based on both national and international skill standards."
-        />
+      {/* Header */}
+      <HeaderAbout
+        title="About Us"
+        titleAs="h1"
+        description="Our platform is designed to help individuals identify, evaluate, and enhance their professional competencies based on both national and international skill standards."
+      />
 
-        {/* Standard Cards */}
-        <section id="about-standard-card" className="space-y-6 mb-20">
-          {standards.map((item) => (
-            <CardStandard key={item.label} item={item} />
-          ))}
-        </section>
-      </div>
+      {/* Standard Cards */}
+      <section id="about-standard-card" className="space-y-6 mb-20">
+        {standards.map((item) => (
+          <CardStandard key={item.label} item={item} />
+        ))}
+      </section>
 
       {/* Feature Cards */}
       <div className="mb-20">

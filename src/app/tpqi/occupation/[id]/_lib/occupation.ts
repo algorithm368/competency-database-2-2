@@ -1,8 +1,8 @@
-import prisma from "@/lib/prisma-tpqi";
+import { tpqiPrisma } from "@/lib/prisma-tpqi";
 
 export async function getOccupationById(id: number) {
   try {
-    return await prisma.occupation.findUnique({
+    return await tpqiPrisma.occupation.findUnique({
       where: { id },
       include: {
         qualifications: {
