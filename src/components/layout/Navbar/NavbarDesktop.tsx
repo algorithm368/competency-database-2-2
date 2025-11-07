@@ -6,7 +6,7 @@ import LoginButton from "./LoginButton";
 import { useSession } from "@/lib/auth-client";
 
 export default function DesktopNavbar() {
-  const { data: session, isLoading } = useSession();
+  const { data: session, isPending } = useSession();
 
   return (
     <nav className="flex justify-between items-center p-4 shadow-sm">
@@ -22,7 +22,7 @@ export default function DesktopNavbar() {
           <Link href="/tpqi/sector">TPQI</Link>
         </Button>
 
-        {!isLoading && session?.user && (
+        {!isPending && session?.user && (
           <Button asChild variant="link" size="sm">
             <Link href="/profile">Profile</Link>
           </Button>
