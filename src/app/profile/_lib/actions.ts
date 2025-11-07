@@ -5,6 +5,7 @@ import { authPrisma } from "@/lib/prisma-auth";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { updateProfileSchema, UpdateProfileInput } from "./validations";
+import { Prisma } from "@prisma/client";
 
 type ActionResult<T = void> = {
   success: boolean;
@@ -17,20 +18,13 @@ export async function updateProfile(
   input: UpdateProfileInput,
 ): Promise<ActionResult> {
   try {
-    // Get current user session
     const requestHeaders = await headers();
-    const session = await auth.api.getSession({
-      headers: requestHeaders,
-    });
+    const session = await auth.api.getSession({ headers: requestHeaders });
 
     if (!session?.user) {
-      return {
-        success: false,
-        message: "Unauthorized. Please log in.",
-      };
+      return { success: false, message: "Unauthorized. Please log in." };
     }
 
-    // Validate input
     const validation = updateProfileSchema.safeParse(input);
     if (!validation.success) {
       return {
@@ -40,51 +34,36 @@ export async function updateProfile(
       };
     }
 
-    const { name, phone, titleId, address } = validation.data;
+    const { name, phone, address } = validation.data;
 
-    // Update user in transaction
-    await authPrisma.$transaction(async (tx) => {
-      // Update basic user info
+    await authPrisma.$transaction(async (tx: Prisma.TransactionClient) => {
       await tx.user.update({
         where: { id: session.user.id },
-        data: {
-          name,
-          phone,
-          titleId,
-          updatedAt: new Date(),
-        },
+        data: { name, phone, updatedAt: new Date() },
       });
 
-      // Handle address
       if (address) {
         const existingAddress = await tx.address.findUnique({
           where: { userId: session.user.id },
         });
 
         if (existingAddress) {
-          // Update existing address
           await tx.address.update({
             where: { userId: session.user.id },
             data: address,
           });
         } else {
-          // Create new address
           await tx.address.create({
-            data: {
-              ...address,
-              userId: session.user.id,
-            },
+            data: { ...address, userId: session.user.id },
           });
         }
       } else {
-        // Delete address if it exists and input is null
         await tx.address.deleteMany({
           where: { userId: session.user.id },
         });
       }
     });
 
-    // Revalidate the profile page
     revalidatePath("/profile");
 
     return {

@@ -1,7 +1,6 @@
-import { User, Title, Address } from ".prisma/auth/client";
+import { User, Address } from ".prisma/auth/client";
 
 export type UserWithRelations = User & {
-  title: Title | null;
   address: Address | null;
 };
 

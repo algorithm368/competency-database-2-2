@@ -4,17 +4,8 @@ import CardSector from "./components/CardSector";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { getSectors } from "@/app/tpqi/sector/_lib/sector";
+import { Sector, TpqiPageProps } from "./_lib/types";
 
-interface TpqiPageProps {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}
-
-interface Sector {
-  id: number;
-  name: string;
-}
-
-// Simple in-memory cache to avoid rebuilding Fuse for every request
 let fuseCache: Fuse<Sector> | null = null;
 let sectorCache: Sector[] | null = null;
 

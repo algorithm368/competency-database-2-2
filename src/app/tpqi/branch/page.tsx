@@ -7,7 +7,6 @@ interface BranchProps {
 
 export default async function BranchPage() {
   const branches: unknown = await getBranch();
-  // console.log(branchs);
   return (
     <div>
       <h1>Branch</h1>

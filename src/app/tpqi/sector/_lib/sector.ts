@@ -1,6 +1,6 @@
 import { tpqiPrisma } from "@/lib/prisma-tpqi";
-import fs from "fs/promises";
-import path from "path";
+import fs from "node:fs/promises";
+import path from "node:path";
 import { parse } from "csv-parse/sync";
 
 interface Sector {

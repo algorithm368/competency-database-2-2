@@ -1,4 +1,4 @@
-import Prisma from "@/lib/prisma-tpqi";
+import { Prisma } from "@/lib/prisma-tpqi";
 
 export type SectorWithRelations = Prisma.SectorGetPayload<{
   include: {
@@ -18,13 +18,15 @@ export type SectorWithRelations = Prisma.SectorGetPayload<{
   };
 }>;
 
+export interface Sector {
+  id: number;
+  name: string;
+}
+
 export interface SectorPageParams {
   id: string;
 }
 
-export type CategoryVariant = "default" | "secondary" | "outline";
-
-export interface CategoryInfo {
-  type: string;
-  variant: CategoryVariant;
+export interface TpqiPageProps {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }

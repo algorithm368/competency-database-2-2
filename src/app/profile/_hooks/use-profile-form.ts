@@ -13,7 +13,6 @@ export function useProfileForm(initialUser: UserWithRelations) {
     name: initialUser.name,
     email: initialUser.email,
     phone: initialUser.phone || "",
-    titleId: initialUser.titleId || "",
     street: initialUser.address?.street || "",
     subdistrict: initialUser.address?.subdistrict || "",
     district: initialUser.address?.district || "",
@@ -36,7 +35,6 @@ export function useProfileForm(initialUser: UserWithRelations) {
       const result = await updateProfile({
         name: formData.name,
         phone: formData.phone || null,
-        titleId: formData.titleId || null,
         address: hasAddress
           ? {
               street: formData.street,
