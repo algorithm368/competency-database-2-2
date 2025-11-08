@@ -34,7 +34,6 @@ export default async function SectorPage({
     });
   }
 
-  // Avoid negated condition for clarity
   const hasSearch = search.trim().length > 0;
   const filteredSectors = hasSearch
     ? fuseCache!.search(search).map((r) => r.item)
@@ -61,7 +60,7 @@ export default async function SectorPage({
             <Input
               name="search"
               defaultValue={search}
-              placeholder="ค้นหาสาขาวิชาชีพที่คุณสนใจ... (เช่น การเงิน, เทคโนโลยี, โรงแรม)"
+              placeholder="Search for a professional sector you are interested in... (e.g., Finance, Technology, Hospitality)"
               className="pl-12 h-14 text-lg rounded-xl shadow-md backdrop-blur-sm bg-background/80 focus:ring-2 focus:ring-primary transition-all duration-300 w-full"
             />
           </div>
@@ -76,7 +75,7 @@ export default async function SectorPage({
         <section className="space-y-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
             <h2 className="text-xl sm:text-2xl font-semibold text-foreground">
-              ทั้งหมด
+              All Sectors
             </h2>
             <span className="text-sm text-muted-foreground">
               {filteredSectors.length}{" "}
@@ -86,9 +85,9 @@ export default async function SectorPage({
 
           {filteredSectors.length === 0 ? (
             <div className="text-center py-12 text-muted-foreground">
-              <p className="text-lg">ไม่พบข้อมูลที่ค้นหา</p>
+              <p className="text-lg">No results found</p>
               <p className="text-sm mt-2">
-                ลองใช้คำค้นหาอื่น หรือเว้นว่างช่องค้นหา
+                Try a different search term or leave the search box empty
               </p>
             </div>
           ) : (

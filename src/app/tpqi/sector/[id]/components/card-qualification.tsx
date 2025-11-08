@@ -14,7 +14,7 @@ export function CardQualification({ qualifications }: CardQualificationProps) {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <GraduationCap className="w-5 h-5 text-primary" />
-          คุณวุฒิวิชาชีพ ({qualifications?.length || 0})
+          Professional Qualifications ({qualifications?.length || 0})
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -36,25 +36,25 @@ export function CardQualification({ qualifications }: CardQualificationProps) {
                     <div className="text-sm space-y-1">
                       {qual.branch && (
                         <p>
-                          <span className="font-semibold">สาขา: </span>
+                          <span className="font-semibold">Branch: </span>
                           {qual.branch.name}
                         </p>
                       )}
                       {qual.occupation && (
                         <p>
-                          <span className="font-semibold">อาชีพ: </span>
+                          <span className="font-semibold">Occupation: </span>
                           {qual.occupation.name}
                         </p>
                       )}
                     </div>
                   </div>
                 </Link>
-              )
+              ),
             )}
           </div>
         ) : (
           <p className="text-sm text-muted-foreground">
-            ไม่มีข้อมูลคุณวุฒิวิชาชีพ
+            No professional qualification data available
           </p>
         )}
       </CardContent>

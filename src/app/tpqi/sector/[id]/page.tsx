@@ -4,10 +4,10 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { getSectors, getSectorById } from "../_lib/sector";
-import { SectorHeader } from "./components/HeaderSection";
-import { CardBranch } from "./components/CardBranch";
-import { CardOccupation } from "./components/CardOccupation";
-import { CardQualification } from "./components/CardQualification";
+import { HeaderSector } from "./components/header-tpqi-sector";
+import { CardBranch } from "./components/card-branch";
+import { CardOccupation } from "./components/card-occupation";
+import { CardQualification } from "./components/card-qualification";
 
 interface SectorPageProps {
   readonly params: Promise<{ id: string }>;
@@ -15,7 +15,7 @@ interface SectorPageProps {
 
 export default async function SectorPage({ params }: SectorPageProps) {
   const { id: idParam } = await params;
-  // Validate id from params
+  // Validate ID from params
   const id = Number(idParam);
 
   if (!idParam || Number.isNaN(id) || id <= 0) {
@@ -37,12 +37,12 @@ export default async function SectorPage({ params }: SectorPageProps) {
         <Button variant="ghost" asChild className="mb-6">
           <Link href="/tpqi/sector" className="flex items-center gap-2">
             <ArrowLeft className="w-4 h-4" />
-            กลับไปยังรายการสาขา
+            Back to sector list
           </Link>
         </Button>
 
         {/* Header Section */}
-        <SectorHeader name={sector.name} />
+        <HeaderSector name={sector.name} />
 
         <Separator className="my-8" />
 

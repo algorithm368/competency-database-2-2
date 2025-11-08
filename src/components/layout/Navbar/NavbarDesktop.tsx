@@ -19,6 +19,9 @@ export default function DesktopNavbar() {
           <Link href="/about">About</Link>
         </Button>
         <Button asChild variant="link" size="sm">
+          <Link href="/sfia/skill">SFIA</Link>
+        </Button>
+        <Button asChild variant="link" size="sm">
           <Link href="/tpqi/sector">TPQI</Link>
         </Button>
 

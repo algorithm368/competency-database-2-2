@@ -13,7 +13,7 @@ export function CardBranch({ branches }: CardBranchProps) {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Building2 className="w-5 h-5 text-primary" />
-          สาขาย่อย ({branches?.length || 0})
+          Sub-branches ({branches?.length || 0})
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -31,7 +31,9 @@ export function CardBranch({ branches }: CardBranchProps) {
             ))}
           </ul>
         ) : (
-          <p className="text-sm text-muted-foreground">ไม่มีข้อมูลสาขาย่อย</p>
+          <p className="text-sm text-muted-foreground">
+            No sub-branch data available
+          </p>
         )}
       </CardContent>
     </Card>
