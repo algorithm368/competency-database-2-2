@@ -1,11 +1,10 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { authPrisma } from "@/lib/prisma-auth";
+import { authPrisma, Prisma } from "@/lib/prisma-auth";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { updateProfileSchema, UpdateProfileInput } from "./validations";
-import { Prisma } from "@/lib/prisma-auth";
 
 type ActionResult<T = void> = {
   success: boolean;

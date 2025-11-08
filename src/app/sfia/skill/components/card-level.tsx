@@ -15,7 +15,7 @@ interface CardLevelProps {
   level: Level;
 }
 
-export function CardLevel({ level }: CardLevelProps) {
+export function CardLevel({ level }: Readonly<CardLevelProps>) {
   return (
     <Card className="mb-6 shadow-sm hover:shadow-md transition-shadow mx-4 sm:px-6">
       <CardHeader className="p-0">
