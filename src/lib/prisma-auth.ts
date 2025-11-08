@@ -9,3 +9,5 @@ export const authPrisma = globalForPrisma.authPrisma ?? new PrismaClient();
 if (process.env.NODE_ENV !== "production") {
   globalForPrisma.authPrisma = authPrisma;
 }
+
+export { Prisma } from ".prisma/sfia/client";

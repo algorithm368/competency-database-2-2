@@ -28,7 +28,7 @@ function CardMember({ member }: Readonly<{ member: MemberProps }>) {
 
             <a
               href={`mailto:${member.email}`}
-              className="block text-sm text-primary hover:underline break-words font-medium"
+              className="block text-sm text-primary hover:underline font-medium"
             >
               {member.email}
             </a>
